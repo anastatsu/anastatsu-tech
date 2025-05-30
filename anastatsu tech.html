@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Anastatsu Tech, img:"https://bing.com/th/id/BCO.b063755e-85b2-4509-817b-a8aaa12a295f.png" - Tienda</title>
+<style>  
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #f0f4f8;
+    color: #001f3f;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    background-color: #001f3f;
+    padding: 15px 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 24px;
+  }
+  nav.top-nav a {
+    color: #7ab8ff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 25px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+  nav.top-nav a:hover, nav.top-nav a.active {
+    color: white;
+    background-color: #0074D9;
+  }
+  nav.top-nav a .icon {
+    font-size: 28px;
+    line-height: 1;
+  }
+  #app {
+    flex-grow: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  /* Sidebar nav */
+  nav.side-nav {
+    width: 220px;
+    background: #001f3f;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+  }
+  nav.side-nav h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  nav.side-nav ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  nav.side-nav li {
+    margin-bottom: 12px;
+  }
+  nav.side-nav a {
+    color: #7ab8ff;
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  nav.side-nav a:hover, nav.side-nav a.active {
+    background-color: #0074D9;
+    color: white;
+  }
+  main.content {
+    flex-grow: 1;
+    padding: 30px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background: white;
+  }
+  main.content h1 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #001f3f;
+  }
+  ul.products {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul.products li {
+    background: #f9faff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  }
+  ul.products img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 20px;
+  }
+  .product-info {
+    flex-grow: 1;
+  }
+  .product-name {
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 18px;
+  }
+  .product-price-stock {
+    color: #555;
+    font-size: 14px;
+  }
+
+  /* Página Inicio decorada con botones grandes */
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  #home-page {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background: linear-gradient(270deg, #0074D9, #001f3f, #00aaff, #004a99);
+    background-size: 800% 800%;
+    animation: gradientShift 20s ease infinite;
+    color: white;
+    text-align: center;
+    min-height: calc(100vh - 70px); /* header 70px aprox */
+    box-sizing: border-box;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+    border-radius: 20px;
+    margin: 20px;
+  }
+  #home-page h2 {
+    font-size: 48px;
+    margin-bottom: 40px;
+    font-weight: 900;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.85);
+    letter-spacing: 1.5px;
+  }
+  #home-page .btn-container {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #home-page .btn-large {
+    cursor: pointer;
+    background-color: #00c0ff;
+    border: none;
+    border-radius: 20px;
+    padding: 30px 70px;
+    font-size: 34px;
+    font-weight: 900;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 8px 24px rgba(0,192,255,0.8);
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    user-select: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+  #home-page .btn-large:hover {
+    background-color: #0096d6;
+    box-shadow: 0 12px 35px rgba(0,150,214,0.9);
+    transform: translateY(-4px);
+  }
+  #home-page .btn-large .icon {
+    font-size: 44px;
+  }
+  #home-page .objective-text {
+    max-width: 900px;
+    font-size: 24px;
+    line-height: 1.8;
+    font-weight: 600;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    letter-spacing: 0.8px;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    #home-page h2 {
+      font-size: 34px;
+      margin-bottom: 30px;
+    }
+    #home-page .btn-container {
+      flex-direction: column;
+      gap: 25px;
+    }
+    #home-page .btn-large {
+      padding: 24px 45px;
+      font-size: 28px;
+    }
+    #home-page .btn-large .icon {
+      font-size: 36px;
+    }
+    #home-page .objective-text {
+      font-size: 18px;
+      padding: 0 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Anastatsu Tech</h1>
+  <nav class="top-nav">
+    <a href="#" data-page="home" class="active"><span class="icon">🏠</span> Inicio</a>
+    <a href="#" data-page="tienda"><span class="icon">🛒</span> Tienda</a>
+  </nav>
+</header>
+
+<div id="app">
+  <!-- Sidebar con categorías (solo en tienda) -->
+  <nav class="side-nav" id="sidebar" style="display:none;">
+    <h2>Categorías</h2>
+    <ul id="category-list">
+      <li><a href="#" data-category="microchip" class="active">Microchip</a></li>
+      <li><a href="#" data-category="chipset">Chipset</a></li>
+      <li><a href="#" data-category="cable">Cables</a></li>
+      <li><a href="#" data-category="entrada">Periféricos de Entrada</a></li>
+      <li><a href="#" data-category="salida">Periféricos de Salida</a></li>
+      <li><a href="#" data-category="entrada_salida">Periféricos Entrada/Salida</a></li>
+      <li><a href="#" data-category="almacenamiento">Almacenamiento</a></li>
+      <li><a href="#" data-category="ram">Memoria RAM</a></li>
+      <li><a href="#" data-category="conexion">Conexión</a></li>
+      <li><a href="#" data-category="placa">Placa Base</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <!-- Página Inicio -->
+    <section id="home-page">
+      <h2>Bienvenido a Anastatsu Tech</h2>
+      <div class="btn-container">
+        <a href="#" class="btn-large" data-page="home"><span class="icon">🏠</span> Inicio</a>
+        <a href="#" class="btn-large" data-page="tienda"><span class="icon">🛒</span> Tienda</a>
+      </div>
+      <p class="objective-text">
+        El objetivo de nuestra empresa es la de vender y proporcionar productos de calidad y totalmente funcionales para aquellos interesados en las tecnologías, streamers, youtubers o dedicados a la creación del contenido, también pretendemos llegar a aquellas grandes empresas interesadas en la obtención de productos tecnológicos para sus trabajadores o uso propio o incluso para aquellos que lo quieran para su uso personal…
+      </p>
+    </section>
+
+    <!-- Página Tienda -->
+    <section id="store-page" style="display:none;">
+      <h1 id="category-title">Microchip</h1>
+      <ul id="product-list" class="products">
+        <!-- Productos cargados dinámicamente -->
+      </ul>
+    </section>
+  </main>
+</div>
+
+<script>
+  // Datos de productos por categoría (igual que antes)
+  const productsData = {
+    microchip: [
+      {name: "INTEL CORE I9-11900K", price: 500, stock: 20, img:"https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSdbiMcBjPKR8kqAfmeAsjjwRGRl760P2kb_gQlfqHBCntx7p03ZnVjt0qQciOf0XpI7_pvC5YR_WtnUUpqXX0uJhx07QSEgqHMVaRhC5hSJYz7PhGQnZkNcUHp0BUj_5BsjR4I731tu-M&usqp=CAc"},
+      {name: "AMD RYZEN 9 5900X", price: 450, stock: 15, img:"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTINtr2TxiIaH_oTKIXi1qmqnE2fpnxCXkllhLaIlGE-G8A4IiOz31Kdnvl-Qp4aYpSrff5s4uAAjtiHlk0X59Fc2XbhQ-_o8JHyaETnc-8wPUbU3mKcCuDeLWDldax9GkrFWmq3Qxctcs&usqp=CAc"},
+      {name: "INTEL CORE I7-11700K", price: 400, stock: 25, img:"data:image/webp;base64,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"},
+      {name: "AMD RYZEN 7 5800X", price: 350, stock: 30, img:"data:image/webp;base64,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"}
+    ],
+    chipset: [
+      {name: "INTEL Z590", price: 180, stock: 45, img:"https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/22407555/intelcorei9_11900K_1.jpg?crop=0%2C10.463416679646%2C100%2C79.073166640708&quality=90&strip=all"},
+      {name: "AMD B550", price: 150, stock: 50, img:"https://i.ebayimg.com/images/g/3voAAOSw-TlgzGNM/s-l1200.jpg"}
+    ],
+    cable: [
+      {name: "Cable Ethernet", price: 12, stock: 100, img:"https://m.media-amazon.com/images/I/61eW6g833-L._AC_UF1000%2C1000_QL80_.jpg"},
+      {name: "Cable HDMI 2.1", price: 20, stock: 80, img:"https://m.media-amazon.com/images/I/61PaaiqpyHL.jpg"}
+    ],
+    entrada: [
+      {name: "Teclado Mecánico", price: 80, stock: 50, img:"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRfeBc2OWTwyhijq0cdgGvn_eEDLg36O8CFGe2hZAcl3DaWhcSd2VX8QKeDLhXnIbIwJjcK_FrqWPWLs0MB8CHW6gvLXhbRhTkC_c-0v7smEACecY3Xpy2fHYi2f862liaAmNnLQV-pOg&usqp=CAc"},
+      {name: "Ratón Gamer", price: 40, stock: 75, img:"https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQIWRiS28nUCk40tClRLUpifp7y8tbSj1E1U4vOJyNavZG_b9Gn-6Wfotz2oUEeac5rKANqip3Or1v7xRGeRWmwveSGDcQsGoueC5hpFuLN8zdSIsBi_NcvtqKMtChhN20ehlQraw&usqp=CAc"}
+    ],
+    salida: [
+      {name: "Monitor 4K", price: 300, stock: 40, img:"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQS722EMrwAMX5iB08Fvj8bZqBwfsxXq56l1g4VEhSqVdHqP7o6zbnOoG2jbc1Ht4-x_mBVbHMzwl2ohot6ept2eOSR_ohfl5Snc3jW-loRXSYe693sBVp741Ihaku5&usqp=CAc"},
+      {name: "Altavoces Bluetooth", price: 60, stock: 60, img:"data:image/webp;base64,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"}
+    ],
+    entrada_salida: [
+      {name: "Auriculares con Micrófono", price: 70, stock: 55, img:"https://images-na.ssl-images-amazon.com/images/I/61fyVuhGmjL._AC_SL1500_.jpg"},
+      {name: "Webcam Full HD", price: 90, stock: 35, img:"https://images-na.ssl-images-amazon.com/images/I/51K-u7FpLwL._AC_SL1000_.jpg"}
+    ],
+    almacenamiento: [
+      {name: "Disco SSD 1TB", price: 120, stock: 80, img:"https://images-na.ssl-images-amazon.com/images/I/71U5cYyJ6-L._AC_SL1500_.jpg"},
+      {name: "Disco HDD 2TB", price: 80, stock: 70, img:"https://images-na.ssl-images-amazon.com/images/I/81CW25qFPQL._AC_SL1500_.jpg"}
+    ],
+    ram: [
+      {name: "Memoria RAM 16GB DDR4", price: 70, stock: 90, img:"https://images-na.ssl-images-amazon.com/images/I/71r7xXXAxkL._AC_SL1500_.jpg"},
+      {name: "Memoria RAM 32GB DDR4", price: 140, stock: 50, img:"https://images-na.ssl-images-amazon.com/images/I/71N6o6cWqcL._AC_SL1500_.jpg"}
+    ],
+    conexion: [
+      {name: "Router WiFi 6", price: 120, stock: 40, img:"https://images-na.ssl-images-amazon.com/images/I/61p5FGTY8vL._AC_SL1500_.jpg"},
+      {name: "Adaptador USB a Ethernet", price: 25, stock: 100, img:"https://images-na.ssl-images-amazon.com/images/I/41I4n3SyZDL._AC_SL1000_.jpg"}
+    ],
+    placa: [
+      {name: "Placa Base ASUS ROG", price: 300, stock: 25, img:"https://images-na.ssl-images-amazon.com/images/I/71RnUQ57uRL._AC_SL1500_.jpg"},
+      {name: "Placa Base MSI Gaming", price: 250, stock: 30, img:"https://images-na.ssl-images-amazon.com/images/I/71kgqBDk2XL._AC_SL1500_.jpg"}
+    ],
+  };
+
+  // Control páginas y categorías
+  const homePage = document.getElementById('home-page');
+  const storePage = document.getElementById('store-page');
+  const sidebar = document.getElementById('sidebar');
+  const productList = document.getElementById('product-list');
+  const categoryTitle = document.getElementById('category-title');
+  const topNavLinks = document.querySelectorAll('nav.top-nav a');
+  const sideNavLinks = document.querySelectorAll('nav.side-nav a');
+  const btnLargeLinks = document.querySelectorAll('#home-page .btn-large');
+
+  function showPage(page) {
+    if(page === 'home') {
+      homePage.style.display = 'flex';
+      storePage.style.display = 'none';
+      sidebar.style.display = 'none';
+      topNavLinks.forEach(link => link.classList.toggle('active', link.dataset.page === 'home'));
+    }
+    if(page === 'tienda') {
+      homePage.style.display = 'none';
+      storePage.style.display = 'block';
+      sidebar.style.display = 'block';
+      topNavLinks.forEach(link => link.classList.toggle('active', link.dataset.page === 'tienda'));
+      // Mostrar categoría activa o por defecto
+      const activeCatLink = document.querySelector('nav.side-nav a.active');
+      const category = activeCatLink ? activeCatLink.dataset.category : 'microchip';
+      loadProducts(category);
+    }
+  }
+
+  function loadProducts(category) {
+    categoryTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1).replace('_','/');
+    productList.innerHTML = '';
+    const products = productsData[category] || [];
+    products.forEach(product => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <img src="${product.img}" alt="${product.name}" />
+        <div class="product-info">
+          <div class="product-name">${product.name}</div>
+          <div class="product-price-stock">Precio: $${product.price} | Stock: ${product.stock}</div>
+        </div>
+      `;
+      productList.appendChild(li);
+    });
+  }
+
+  // Navegación top
+  topNavLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      showPage(link.dataset.page);
+    });
+  });
+
+  // Navegación lateral categorías
+  sideNavLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      sideNavLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      loadProducts(link.dataset.category);
+    });
+  });
+
+  // Botones grandes en home
+  btnLargeLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      showPage(link.dataset.page);
+    });
+  });
+
+  // Inicializar en inicio
+  showPage('home');
+</script>
+
+</body>
+</html>
